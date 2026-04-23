@@ -1,31 +1,22 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-
-
-//Example 3
-import java.util.Collections;
-import java.util.Arrays;
-
-//Example 4
-import java.util.Vector;
-import java.util.Stack;
-import java.util.Deque;
-import java.util.ArrayDeque;
-
-//Example 5
-import java.util.Queue;
-import java.util.PriorityQueue;
-import java.util.Comparator;
-
-//Example 7 & 8
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.Vector;
 
 public class Functions{
     
@@ -79,8 +70,7 @@ public class Functions{
 
         //YOU TRY IT: USE REMOVEALL TO LIST THE CITIES IN COLLECTION 1, BUT NOT IN COLLECTION2
         c1 = new ArrayList<String>(collection1);
-
-        
+        c1.removeAll(collection2);
         System.out.println(c1);
 
         //USING AN ITERATOR
@@ -103,34 +93,33 @@ public class Functions{
         System.out.println(list1);
 
         System.out.printf("%-50s","Collections Sort: display reverse ordered list: ");
-        List<String> list2 = new ArrayList<> (Arrays.asList("yellow", "red", "green", "blue"));
+        List<String> list2 = new ArrayList<> (Arrays.asList("yellow", "orange", "red", "green", "blue"));
            
         //YOU TRY IT: add sort for reversed order:
-
-
-
+        Collections.sort(list2, Collections.reverseOrder());
         System.out.println(list2);
 
         //Combine both lists
         list2.addAll(list1);
-        System.out.printf("%-50s","Combination of list 1 and list 2:  ");
+        System.out.printf("%-50s","\nCombination of list 1 and list 2:  ");
+        Collections.sort(list2);
         System.out.println(list2);
 
-        System.out.printf("%-50s","Collections binarySearch:, find green & Green:  ");
+        System.out.printf("%-50s","\nCollections binarySearch:, find green & Green:  ");
         System.out.print("(1) Index: " + Collections.binarySearch(list2,"green") +  "  ::  ");
         System.out.println("(2) Index: " + Collections.binarySearch(list2, "Green"));
  
         
-        System.out.printf("%-50s","Collections Shuffle: display shuffled list: ");
+        System.out.printf("%-50s","\nCollections Shuffle: display shuffled list: ");
         Collections.shuffle(list2);
         System.out.println(list2);
 
-        System.out.printf("%-50s","Collections Copy: display new list that copies list3 into list2: ");
+        System.out.printf("%-50s","\nCollections Copy: display new list that copies list3 into list2: ");
         List<String> list3 = Arrays.asList("purple", "orange", "black", "white");
         Collections.copy(list2, list3);
         System.out.println(list2);
 
-        System.out.printf("%-50s","Collections Disjoint: display outcome of testing for disjoint:  ");
+        System.out.printf("%-50s","\nCollections Disjoint: display outcome of testing for disjoint:  ");
         System.out.print(Collections.disjoint(list1, list2) + "  ::  ");
         System.out.println(Collections.disjoint(list1, list3));
 
@@ -153,11 +142,12 @@ public class Functions{
         System.out.println(list4);
 
         //YOU TRY IT:print list2 in reverse order
-        Collections.sort(list2, Collections.reverseOrder());  
-        System.out.println(list4);
+        //Collections.sort(list4, Collections.reverseOrder());  
+        //System.out.println(list4);
 
         //YOU TRY IT:thenComparing statement to also sort by id 
-
+        list4.sort(Comparator.comparing(Student::getLastName).thenComparing(Student::getId));
+        System.out.println(list4);
 
     } 
     public static void example3List(){
@@ -171,7 +161,7 @@ public class Functions{
         arrayList.add(3, 30);
 
         System.out.println("\n\nEXAMPLE 3: LISTS");
-        System.out.print("A list of integers in the array list:");
+        System.out.print("A list of integers in the array list: ");
         System.out.println(arrayList);
 
         LinkedList<Object> linkedList = new LinkedList<>(arrayList);
@@ -187,8 +177,10 @@ public class Functions{
         //YOU TRY IT:
         //NOTE: a standard iterator cannot print in reverse
         System.out.print("\nDisplay the linked list backward:  ");
-
-
+        listIterator = linkedList.listIterator(linkedList.size());
+        while (listIterator.hasPrevious()){
+            System.out.print(listIterator.previous() + " ");   
+        }
 
         System.out.println();
     }
@@ -197,9 +189,9 @@ public class Functions{
 
         System.out.println("\n\nEXAMPLE 4: VECTOR EXAMPLE");
 
-        Vector<Integer> stack = new Vector<>();  //old school style
+        //Vector<Integer> stack = new Vector<>();  //old school style
         //Stack<Integer> stack = new Stack<>();
-        //Deque<Integer> stack = new ArrayDeque<>();
+        Deque<Integer> stack = new ArrayDeque<>();
 
         // Push elements (add to top)
         stack.add(10);
@@ -211,27 +203,28 @@ public class Functions{
         System.out.println("Stack Elements: " + stack);
 
         // Peek (look at the top element)
-        int top = stack.lastElement();
+        //int top = stack.lastElement();
+        int top = stack.getLast();
         System.out.println("Stack: Top element: " + top);
 
         // Pop (remove from top)
-        stack.remove(stack.size() - 1);
+        stack.removeLast();
         System.out.println("Stack: After pop: " + stack);
 
         // Push another element
-        stack.add(40);
+        stack.addFirst(40);
         System.out.println("Stack: After pushing 40: " + stack);
 
         // Check if empty
         System.out.println("Stack: Removing All Elements: ");
         while (!(stack.isEmpty())) {
-            top = stack.lastElement();
+            top = stack.getLast();
             System.out.print(top + " ");
-            stack.remove(stack.size() -1);
+            stack.removeLast();
         }
 
 
-        System.out.println("\n\nEXAMPLE 4: STACK EXAMPLE");
+        System.out.println("\n\nEXAMPLE 4: STACK EXAMPLE: PALINDROME");
         Stack<Character> stack2 = new Stack<>();
         ArrayList<String> wordList = new ArrayList<>(Arrays.asList("tacocat", "bubba","a", "mom","abba" ));
         boolean isPal;
@@ -248,12 +241,27 @@ public class Functions{
             //for each character in the word
             //the character should equal the last item pushed onto the stack
             //YOU TRY IT
-
-
-
-
             System.out.println("The word: " + w + " is a palindrome? " + isPal);
         }
+
+
+        System.out.println("\n\nEXAMPLE 4: STACK EXAMPLE: POSTFIX EXPRESSIONS");
+        ArrayDeque<Integer> stack3  = new ArrayDeque<>();
+        ArrayList<String> expressionList = new ArrayList<>(Arrays.asList("41 5 + 37 -", "15 5 + " ));
+  
+        //for each word in the wordList
+        for (String w : expressionList){
+            stack3.clear();
+            String tokens[] = w.split(" ");
+
+            //push all letters onto the stack
+            for (int i = 0; i < tokens.length; i++){
+                //add logic here
+            }
+            System.out.println("The total of " + w + " = " + stack3.pop());
+        }
+
+
     } 
 
     public static void example5Queue(){
