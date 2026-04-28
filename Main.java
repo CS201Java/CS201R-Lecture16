@@ -36,9 +36,9 @@ public class Main {
         //EXAMPLE 4:  Creating a generic SelectionSort
         System.out.print("\nEXAMPLE 4: Using a generic SelectionSort");  
         ArrayList<Character> intList5 = new ArrayList<>(Arrays.asList('z','e','b','r','a'));       
-        Functions.<Integer> SelectionSort(intList2);
-        Functions.<Double> SelectionSort(intList3);
-        Functions.<Character> SelectionSort(intList5);
+        Functions.SelectionSort(intList2);
+        //Functions.<Double> SelectionSort(intList3);
+        //Functions.<Character> SelectionSort(intList5);
 
         //EXAMPLE 5: Creating a generic stack structure
         System.out.println("\nEXAMPLE 5: Creating a generic class (stack)");  
@@ -55,6 +55,7 @@ public class Main {
         //System.out.println(myStack2);
 
         //EXAMPLE 6: Creating a generic pair structure (similar to map)
+      
         System.out.println("\nEXAMPLE 6: Creating a generic class (pair with 2 variables)"); 
         List<Pair<Integer, String>> studentList = new ArrayList<>(List.of(
             new Pair<Integer, String>(1, "Bubba"),
@@ -79,9 +80,6 @@ public class Main {
         for (Pair<Double, String> p : studentList2){
             System.out.println(p.getKey() + " " + p.getValue());
         }
-        
-        pair3<Double> p3 = new pair3(4.5, 6.7);
-        System.out.println(p3.sum());
         
     }
 }

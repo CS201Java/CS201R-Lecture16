@@ -58,11 +58,11 @@ public class Functions{
     }
     */
     //EXAMPLE 4: Selection Sort    
-    public static <E extends Comparable<E>> void SelectionSort(ArrayList<E> list) {
+    public static void SelectionSort(ArrayList<Integer> list) {
         int i;
         int j;
         int indexSmallest;
-        E temp;      // Temporary variable for swap
+        int temp;      // Temporary variable for swap
 
         System.out.println("\nThe original list is: " + list);
         
