@@ -1,6 +1,6 @@
 
 //EXAMPLE 6: Generic Class with 2 Types  
-public class Pair<K extends Comparable<K>, V> implements Comparable <Pair<K,V>> {
+public class Pair <K extends Comparable<K>, V> implements Comparable <Pair<K,V>> {
     private K key;
     private V value;
 

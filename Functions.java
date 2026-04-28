@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Functions{
-    /*
+
     //EXAMPLE 0: prints an integer array
     public static void print(Integer[] list) {
         System.out.print("EXAMPLE 0: Printing an Integer List (non-generic):  ");
@@ -17,7 +17,7 @@ public class Functions{
             System.out.print(list[i] + " ");
         System.out.println();    
     }
-    */
+
     //EXAMPLE 1: prints an array
     public static <E> void print(E[] list) {
         System.out.print("EXAMPLE 1: Printing a List (generic):               ");
@@ -48,7 +48,15 @@ public class Functions{
         return sum;
     }
 
-
+    /*
+    //EXAMPLE 3: returns the sum of the values of a numeric array
+    public static <E extends Number> double sum(ArrayList<E> list) {
+        double sum = 0;
+        for (Number i : list) 
+            sum += i.doubleValue(); 
+        return sum;
+    }
+    */
     //EXAMPLE 4: Selection Sort    
     public static <E extends Comparable<E>> void SelectionSort(ArrayList<E> list) {
         int i;

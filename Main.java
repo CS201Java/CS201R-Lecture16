@@ -1,11 +1,8 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.Collections;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
 
 public class Main {
@@ -45,17 +42,17 @@ public class Main {
 
         //EXAMPLE 5: Creating a generic stack structure
         System.out.println("\nEXAMPLE 5: Creating a generic class (stack)");  
-        StackList<String> myStack1 = new StackList<>();
+        StackList myStack1 = new StackList();
         myStack1.push("Alvin");
         myStack1.push("Theodore");
         myStack1.push("Simon");
         System.out.println(myStack1);
 
-        StackList<Double> myStack2 = new StackList<>();
-        myStack2.push(1.5);
-        myStack2.push(2.8);
-        myStack2.push(3.14);
-        System.out.println(myStack2);
+        //StackList<Double> myStack2 = new StackList<>();
+        //myStack2.push(1.5);
+        //myStack2.push(2.8);
+        //myStack2.push(3.14);
+        //System.out.println(myStack2);
 
         //EXAMPLE 6: Creating a generic pair structure (similar to map)
         System.out.println("\nEXAMPLE 6: Creating a generic class (pair with 2 variables)"); 
@@ -69,6 +66,22 @@ public class Main {
         for (Pair<Integer, String> p : studentList){
             System.out.println(p.getKey() + " " + p.getValue());
         }
+
+
+        System.out.println();
+        List<Pair<Double, String>> studentList2 = new ArrayList<>(List.of(
+            new Pair<Double, String>(1.1, "Bubba"),
+            new Pair<Double, String>(9.2, "Fred"),
+            new Pair<Double, String>(18.3, "Wilma"),
+            new Pair<Double, String>(4.4, "Betty")));
+
+        Collections.sort(studentList2);
+        for (Pair<Double, String> p : studentList2){
+            System.out.println(p.getKey() + " " + p.getValue());
+        }
+        
+        pair3<Double> p3 = new pair3(4.5, 6.7);
+        System.out.println(p3.sum());
         
     }
 }
