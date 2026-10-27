@@ -179,9 +179,8 @@ public class Functions{
         System.out.print("\nDisplay the linked list backward:  ");
         listIterator = linkedList.listIterator(linkedList.size());
         while (listIterator.hasPrevious()){
-            System.out.print(listIterator.previous() + " ");   
+            System.out.print(listIterator.previous() + " ");
         }
-
         System.out.println();
     }
 
@@ -247,21 +246,35 @@ public class Functions{
 
         System.out.println("\n\nEXAMPLE 4: STACK EXAMPLE: POSTFIX EXPRESSIONS");
         ArrayDeque<Integer> stack3  = new ArrayDeque<>();
-        ArrayList<String> expressionList = new ArrayList<>(Arrays.asList("41 5 + 37 -", "15 5 + " ));
+        ArrayList<String> expressionList = new ArrayList<>
+              (Arrays.asList("41 5 + 37 -", "15 5 + " ));
   
-        //for each word in the wordList
+        //for each expressions in the expressionList
         for (String w : expressionList){
             stack3.clear();
             String tokens[] = w.split(" ");
-
-            //push all letters onto the stack
+            int left, right, sum = 0;
+            //push all 'numbers' onto the stack
             for (int i = 0; i < tokens.length; i++){
-                //add logic here
+                if (tokens[i].equals("+")){
+                    right = stack3.pop();
+                    left  = stack3.pop();
+                    sum = left + right;
+                    stack3.push(sum);
+                }
+                else if (tokens[i].equals("-")){
+                    right = stack3.pop();
+                    left  = stack3.pop();
+                    sum = left - right;
+                    stack3.push(sum);
+                }
+                else{
+                    stack3.push(Integer.parseInt(tokens[i]));
+                }
+
             }
             System.out.println("The total of " + w + " = " + stack3.pop());
         }
-
-
     } 
 
     public static void example5Queue(){
@@ -291,13 +304,14 @@ public class Functions{
         PriorityQueue<String> queue2 = new PriorityQueue<>(4, Collections.reverseOrder());
         queue2.offer("Oklahoma");
         queue2.offer("Indiana");
-        queue2.offer("Georgia");
-        queue2.offer("Texas");
+        queue2.add("Georgia");
+        queue2.add("Texas");
 
-        System.out.print("\nPriority Queue: Using Comparator:  ");
+        System.out.print("\n\nEXAMPLE 5:Priority Queue: Using Comparator:  ");
         while (queue2.size() > 0) {
             System.out.print(queue2.remove() + " ");
         }
+
 
         //creating your own custom comparator
         PriorityQueue<String> queue3 = new PriorityQueue<>(Comparator.comparingInt(String::length).reversed());
@@ -305,24 +319,59 @@ public class Functions{
         queue3.offer("Indiana");
         queue3.add("Georgia");
         queue3.add("Texas");
-        System.out.print("\nPriority Queue: Using Custom Comparator:  ");
+ 
+        System.out.print("\n\nEXAMPLE 5:Priority Queue: Using Custom Comparator:  ");
         while (queue3.size() > 0) {
             System.out.print(queue3.remove() + " ");
         }
 
-        
-        //YOU TRY IT
-        //ADD A COMPARATOR FOR QUEUE4
-        //ADD 2 STATES
-        PriorityQueue<String> queue4 = new PriorityQueue<>();
-        queue4.offer("Oklahoma");
-        queue4.offer("Indiana");
-        queue4.add("Georgia");
-        queue4.add("Texas");
-        System.out.print("\nPriority Queue: Using Custom Comparator:  ");
+        //SAME SORT - BUT USING A CUSTOM COMPARATOR CLASS
+        //creating your own custom comparator
+        PriorityQueue<String> queue3b = new PriorityQueue<>(new MyComparator2());
+        queue3b.offer("Oklahoma");
+        queue3b.offer("Indiana");
+        queue3b.add("Georgia");
+        queue3b.add("Geometry");
+        queue3b.add("Texas");
+        queue3b.add("Texaa");
+ 
+        System.out.print("\n\nEXAMPLE 5:Priority Queue: Using Custom Comparator Class:  ");
+        while (queue3b.size() > 0) {
+            System.out.print(queue3b.remove() + " ");
+        }
+
+        //ADDING STUDENTS TO A PQ USING CUSTOM COMPARATOR CLASS
+        PriorityQueue<Student> queue4 = new PriorityQueue<>(new StudentComparator());
+        queue4.add(new Student(1, "Smith", "Alice", "Biology"));
+        queue4.add(new Student(2, "Jackson", "Bob", "Mathematics"));
+        queue4.add(new Student(3, "Smith", "Brian", "Chemistry"));
+        queue4.add(new Student(3, "Adams", "Carol", "Computer Science"));
+
+        Student s1 = new Student(5, "Adams", "Wednesday", "Engineering");
+        Student s2 = new Student(5, "Jackson", "Percy", "Engineering");
+        queue4.offer(s1);
+        queue4.offer(s2);
+
+        System.out.print("\n\nEXAMPLE 5:Priority Queue: Using Custom Comparator Class:  ");
         while (queue4.size() > 0) {
             System.out.print(queue4.remove() + " ");
+        }   
+           
+        //YOU TRY IT
+        //ADD A COMPARATOR FOR THE PRIORITY QUEUE
+        //ADD 2 STATES
+        PriorityQueue<String> queue5 = new PriorityQueue<>();
+        queue5.offer("Oklahoma");
+        queue5.offer("Indiana");
+        queue5.add("Georgia");
+        queue5.add("Texas");
+ 
+        System.out.print("\n\nEXAMPLE 5:Priority Queue: Using Custom Comparator:  ");
+        while (queue5.size() > 0) {
+            System.out.print(queue5.remove() + " ");
         }
+
+
     }
 
     public static void example6ArrayDeque(){
@@ -418,7 +467,7 @@ public class Functions{
         System.out.println(". There are " + set1.size() + " elements in set1");
         
         // Create set2
-        Set<String> set2 = new java.util.HashSet<>();
+        Set<String> set2 = new TreeSet<>();
         
         // Add strings to set2
         set2.add("London");
@@ -428,18 +477,17 @@ public class Functions{
         System.out.println(". There are " + set2.size() + " elements in set2");
         System.out.println("\nIs Taipei in set2? " + set2.contains("Taipei"));
         
-        set1.addAll(set2);
-        System.out.println("\nAfter adding set2 to set1, set1 is " + set1);
+        set2.addAll(set1);
+        System.out.println("\nAfter adding set1 to set2, set2 is " + set2);
         
-        set1.removeAll(set2);
-        System.out.println("After removing set2 from set1, set1 is " + set1);
+        set2.retainAll(set1);
+        System.out.println("After removing common elements in set1 " 
+                           + "from set2, set2 is " + set2);
         
-        set1.retainAll(set2);
-        System.out.println("After removing common elements in set2 " 
-                           + "from set1, set1 is " + set1);
+        set2.removeAll(set1);
+        System.out.println("After removing set1 from set2, set2 is " + set2);
 
-
-        System.out.println("\n\nEXAMPLE 7: USING TREESETS");
+        System.out.println("\n\nEXAMPLE 7: USING TREESETS WITH OBJECTS");
 
         TreeSet<Student> students = new TreeSet<>(new StudentComparator());
 

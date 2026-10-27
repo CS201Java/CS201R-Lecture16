@@ -13,7 +13,7 @@ public class Main {
         //Functions.example3List();
 
         //EXAMPLE 4: VECTOR, STACK, ARRAYDEQUE
-        Functions.example4VectorStack();
+        //Functions.example4VectorStack();
 
         //EXAMPLE 5: QUEUES & PRIORITY QUEUES
         //Functions.example5Queue();
@@ -22,7 +22,7 @@ public class Main {
         //Functions.example6ArrayDeque();
 
         //EXAMPLE 7: SETS
-        //Functions.example7Sets();
+        Functions.example7Sets();
 
         //EXAMPLE 8: MAPS
         //Functions.example8Maps();
